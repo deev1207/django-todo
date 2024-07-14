@@ -1,0 +1,18 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% if todoitem_list %}
+    <ul>
+      {% for item in todoitem_list %}
+      <li>
+        <a href="{{ item.get_absolute_url }}">{{ item.content }}</a>
+        {% if item.due_date %}
+        <p><strong>Due Date: </strong>{{item.due_date}}</p>
+        {% endif %}
+        <a href="{% url 'delete' item.id %}">Delete</a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no tasks </p>
+  {% endif %}
+{% endblock %}
